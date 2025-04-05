@@ -1,4 +1,8 @@
 eclipse.preferences.version=1
+<<<<<<< HEAD
+=======
+org.eclipse.jdt.core.compiler.codegen.inlineJsrBytecode=enabled
+>>>>>>> branch 'master' of https://github.com/CodeNestITSolutions/BusTimings.git
 org.eclipse.jdt.core.compiler.codegen.targetPlatform=17
 org.eclipse.jdt.core.compiler.compliance=17
 org.eclipse.jdt.core.compiler.problem.assertIdentifier=error
