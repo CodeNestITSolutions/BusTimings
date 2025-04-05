@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Page</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            background-color: #f3e5f5;
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+        
+        .container {
+            margin: 50px auto;
+            padding: 20px;
+            background: #e1bee7;
+            border-radius: 10px;
+            width: 70%;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .home-icon {
+            text-decoration: none;
+            font-size: 20px;
+            font-weight: bold;
+            color: #4a148c;
+            display: block;
+            margin-bottom: 10px;
+        }
+        
+        h1 {
+            color: #4a148c;
+        }
+        
+        .search-fields {
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+        }
+        
+        .section {
+            flex: 1;
+            border-right: 2px solid #7b1fa2;
+            padding-right: 20px;
+        }
+        
+        .section:last-child {
+            border-right: none;
+            padding-left: 20px;
+        }
+        
+        .section label {
+            font-weight: bold;
+            color: #4a148c;
+            margin-top: 10px;
+            display: block;
+        }
+        
+        .section select {
+            width: 90%;
+            padding: 10px;
+            margin: 5px 0;
+            border-radius: 5px;
+            border: 1px solid #7b1fa2;
+            background: #f3e5f5;
+        }
+        
+        .bustype-select {
+            margin: 20px 0;
+        }
+        
+        .bustype-select label {
+            font-weight: bold;
+            color: #4a148c;
+            display: block;
+            margin-bottom: 5px;
+        }
+        
+        .bustype-select select {
+            width: 50%;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #7b1fa2;
+            background: #f3e5f5;
+        }
+        
+        button {
+            background-color: #7b1fa2;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 10px;
+        }
+        
+        button:hover {
+            background-color: #4a148c;
+        }
+        
+        table {
+            width: 100%;
+            margin-top: 20px;
+            border-collapse: collapse;
+            background: #f3e5f5;
+        }
+        
+        th,
+        td {
+            border: 1px solid #7b1fa2;
+            padding: 10px;
+            text-align: center;
+        }
+        
+        th {
+            background-color: #7b1fa2;
+            color: white;
+        }
+    </style>
+    <script>
+        const dropdownOptions = {
+            district: ["Ariyalur", "Chengalpattu", "Chennai", "Coimbatore", "Cuddalore", "Dharmapuri", "Dindigul", "Erode", "Kallakurichi", "Kanchipuram", "Kanyakumari", "Karur", "Krishnagiri", "Madurai", "Mayiladuthurai", "Nagapattinam", "Namakkal", "Nilgiris", "Perambalur", "Pudukkottai", "Ramanathapuram", "Ranipet", "Salem", "Sivaganga", "Tenkasi", "Thanjavur", "Theni", "Thoothukudi", "Tiruchirappalli", "Tirunelveli", "Tirupattur", "Tiruppur", "Tiruvallur", "Tiruvannamalai", "Tiruvarur", "Vellore", "Viluppuram", "Virudhunagar"],
+            city: ["City 1", "City 2"],
+            town: ["Town 1", "Town 2"],
+            bustype: ["SETC", "Free Bus", "Town Bus", "TNSTC", "AC"]
+        };
+
+        function populateDropdown(selectName, options) {
+            const select = document.querySelector(`select[name='${selectName}']`);
+            select.innerHTML = `<option value='' disabled selected>Select ${selectName.charAt(0).toUpperCase() + selectName.slice(1)}</option>`;
+            options.forEach(option => {
+                const opt = document.createElement("option");
+                opt.value = option;
+                opt.textContent = option;
+                select.appendChild(opt);
+            });
+        }
+
+        function populateAllDropdowns() {
+            populateDropdown("bustype", dropdownOptions.bustype);
+            populateDropdown("sourceDistrict", dropdownOptions.district);
+            populateDropdown("sourceCity", dropdownOptions.city);
+            populateDropdown("sourceTown", dropdownOptions.town);
+            populateDropdown("destinationDistrict", dropdownOptions.district);
+            populateDropdown("destinationCity", dropdownOptions.city);
+            populateDropdown("destinationTown", dropdownOptions.town);
+        }
+
+        function displayResults() {
+            const sourceTown = document.querySelector("select[name='sourceTown']").value;
+            const destinationTown = document.querySelector("select[name='destinationTown']").value;
+            document.getElementById("sourceCell").textContent = sourceTown;
+            document.getElementById("destinationCell").textContent = destinationTown;
+            document.getElementById("resultsTable").style.display = "table";
+        }
+
+        function clearResults() {
+            document.getElementById("resultsTable").style.display = "none";
+            document.querySelectorAll("select").forEach(select => select.selectedIndex = 0);
+        }
+
+        window.onload = populateAllDropdowns;
+    </script>
+</head>
+
+<body>
+    <div class="container">
+        <a href="Home.html" class="home-icon">⌂ Home</a>
+        <h1 class="center">RouteBus</h1>
+        <div class="bustype-select">
+            <label for="bustype">Select Bus Type:</label>
+            <select name="bustype"></select>
+        </div>
+        <div class="search-fields">
+            <div class="section">
+                <h3>Source</h3>
+                <label for="sourceDistrict">District:</label>
+                <select name="sourceDistrict"></select>
+
+                <label for="sourceCity">City:</label>
+                <select name="sourceCity"></select>
+
+                <label for="sourceTown">Town:</label>
+                <select name="sourceTown"></select>
+            </div>
+            <div class="section">
+                <h3>Destination</h3>
+                <label for="destinationDistrict">District:</label>
+                <select name="destinationDistrict"></select>
+
+                <label for="destinationCity">City:</label>
+                <select name="destinationCity"></select>
+
+                <label for="destinationTown">Town:</label>
+                <select name="destinationTown"></select>
+            </div>
+        </div>
+        <button onclick="displayResults()">Search</button>
+        <button onclick="clearResults()">Clear</button>
+
+        <table id="resultsTable" style="display: none;">
+            <tr>
+                <th>Source</th>
+                <th>Destination</th>
+                <th>Bus Number</th>
+                <th>Time</th>
+            </tr>
+            <tr>
+                <td id="sourceCell"></td>
+                <td id="destinationCell"></td>
+                <td>123</td>
+                <td>10:00 AM</td>
+            </tr>
+        </table>
+    </div>
+</body>
+
+</html>

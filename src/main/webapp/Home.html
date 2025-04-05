@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home Page</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #ede7f6;
+            /* Light violet background */
+            margin: 0;
+        }
+        
+        .container {
+            text-align: center;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        
+        h1,
+        h2 {
+            color: #161031;
+            /* Dark violet */
+            margin: 10px 0;
+        }
+        
+        button {
+            padding: 12px 24px;
+            font-size: 18px;
+            border: none;
+            background-color: #7e57c2;
+            color: white;
+            cursor: pointer;
+            border-radius: 8px;
+            transition: background-color 0.3s ease, transform 0.2s;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+            margin-top: 15px;
+        }
+        
+        button:hover {
+            background-color: #5e35b1;
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Welcome to RouteBus</h1>
+        <h2>Find your bus timming to your journey</h2>
+        <button onclick="window.location.href='Search.html'">Search</button>
+        <h2>Reach your destination on time</h2>
+    </div>
+    <script src="script.js"></script>
+</body>
+
+</html>
